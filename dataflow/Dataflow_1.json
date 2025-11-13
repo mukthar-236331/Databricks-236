@@ -31,11 +31,14 @@
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     parameter1 as string",
+				"}",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     moveFiles: ['/csv','error']) ~> source1",
-				"source1 derive(sales = ERROR_FUNCTION('')) ~> derivedColumn1",
+				"source1 derive(sales = $parameter1) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
