@@ -25,19 +25,25 @@
 					}
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     moveFiles: ['/csv','error']) ~> source1",
-				"source1 sink(allowSchemaDrift: true,",
+				"source1 derive(sales = ERROR_FUNCTION('')) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
 				"     outputAssertFailedRows: true,",
 				"     assertFailure_fileSystem: 'errors',",
 				"     assertFailure_folderPath: 'error') ~> sink1"
