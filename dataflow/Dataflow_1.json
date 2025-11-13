@@ -36,7 +36,10 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     outputAssertFailedRows: true,",
+				"     assertFailure_fileSystem: 'errors',",
+				"     assertFailure_folderPath: 'error') ~> sink1"
 			]
 		}
 	}
